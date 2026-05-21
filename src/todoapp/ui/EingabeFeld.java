@@ -3,8 +3,10 @@ package todoapp.ui;
 import javax.swing.*;
 import java.awt.*;
 
-// Eingabefeld mit einheitlichem Look - extends JTextField
-// Der doppelte Border-Trick war von der Dozentin: erst Linie, dann Innenabstand
+/**
+ * Eingabefeld mit einheitlichem Look - extends JTextField.
+ * Der doppelte Border-Trick war von der Dozentin: erst Linie, dann Innenabstand.
+ */
 class EingabeFeld extends JTextField {
 
     EingabeFeld() {

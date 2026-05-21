@@ -8,8 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-// Das Panel in der Mitte - verbindet Formular, Tabelle und Statuszeile
-// Hier ist die eigentliche Logik: was passiert beim Klick auf die Buttons
+/**
+ * Das Panel in der Mitte - verbindet Formular, Tabelle und Statuszeile.
+ * Hier ist die eigentliche Logik: was passiert beim Klick auf die Buttons.
+ */
 @SuppressWarnings("serial")
 public class TodoPanel extends JPanel {
 
@@ -29,7 +31,9 @@ public class TodoPanel extends JPanel {
         initialize();
     }
 
-    // initialize() ausgelagert (gleiches Muster wie in MainFrame)
+    /**
+     * initialize() ausgelagert (gleiches Muster wie in MainFrame)
+     */
     private void initialize() {
         konfigurierePanelAussehen();
         erstelleSubkomponenten();
@@ -50,8 +54,10 @@ public class TodoPanel extends JPanel {
         statusLabel = new StatusLabel();
     }
 
-    // die Buttons mit den Methoden verbinden
-    // Methodenreferenzen (this::hinzufügenAction) sind wie Arrow-Functions in JS
+    /**
+     * die Buttons mit den Methoden verbinden.
+     * Methodenreferenzen (this::hinzufügenAction) sind wie Arrow-Functions in JS.
+     */
     private void verdrahteListener() {
         eingabe.setHinzufügenAction(this::hinzufügenAction);
         eingabe.setLöschenAction(this::löschenAction);
@@ -59,7 +65,9 @@ public class TodoPanel extends JPanel {
         tabelle.addAuswahlListener(this::zeilenAuswahl);
     }
 
-    // fügt die Sub-Komponenten an die richtigen Stellen ein (Nord/Mitte/Süd)
+    /**
+     * fügt die Sub-Komponenten an die richtigen Stellen ein (Nord/Mitte/Süd)
+     */
     private void bauePanelAuf() {
         add(eingabe,              BorderLayout.NORTH);
         add(tabelle,              BorderLayout.CENTER);
@@ -68,7 +76,9 @@ public class TodoPanel extends JPanel {
 
     // ── Aktionen ──────────────────────────────────────────────────────────
 
-    // wird aufgerufen wenn der Hinzufügen-Button geklickt wird
+    /**
+     * wird aufgerufen wenn der Hinzufügen-Button geklickt wird
+     */
     private void hinzufügenAction() {
         if (!validiereEingabe()) return;
         Todo neu = new Todo(
@@ -80,7 +90,9 @@ public class TodoPanel extends JPanel {
         zurücksetzen();
     }
 
-    // Löschen mit Bestätigung (damit man nicht aus Versehen löscht)
+    /**
+     * Löschen mit Bestätigung (damit man nicht aus Versehen löscht)
+     */
     private void löschenAction() {
         int id = tabelle.getGewählteId();
         if (id < 0) {
@@ -96,7 +108,9 @@ public class TodoPanel extends JPanel {
         }
     }
 
-    // Änderungen an einem bestehenden Todo speichern
+    /**
+     * Änderungen an einem bestehenden Todo speichern
+     */
     private void speichernAction() {
         int id = tabelle.getGewählteId();
         if (id < 0) {
@@ -108,7 +122,9 @@ public class TodoPanel extends JPanel {
         zurücksetzen();
     }
 
-    // das eigentliche Updaten ausgelagert damit speichernAction() kürzer bleibt
+    /**
+     * das eigentliche Updaten ausgelagert damit speichernAction() kürzer bleibt
+     */
     private void aktualisiereGewähltesObjekt(int id) {
         service.getAlle().stream()
                 .filter(t -> t.getId() == id)
@@ -122,7 +138,9 @@ public class TodoPanel extends JPanel {
                 });
     }
 
-    // wenn man eine Zeile in der Tabelle anklickt werden die Felder befüllt
+    /**
+     * wenn man eine Zeile in der Tabelle anklickt werden die Felder befüllt
+     */
     private void zeilenAuswahl(int id) {
         if (id < 0) return;
         service.getAlle().stream()
@@ -133,7 +151,9 @@ public class TodoPanel extends JPanel {
 
     // ── Interne Hilfsmethoden ─────────────────────────────────────────────
 
-    // Tabelle neu laden - public damit man es auch von außen aufrufen könnte
+    /**
+     * Tabelle neu laden - public damit man es auch von außen aufrufen könnte
+     */
     public void aktualisiereTabelle() {
         List<Todo> alle = service.getAlle();
         tabelle.aktualisieren(alle);
@@ -152,7 +172,9 @@ public class TodoPanel extends JPanel {
         aktualisiereTabelle();
     }
 
-    // prüft ob ein Titel eingegeben wurde (Pflichtfeld)
+    /**
+     * prüft ob ein Titel eingegeben wurde (Pflichtfeld)
+     */
     private boolean validiereEingabe() {
         if (eingabe.getTitel().isEmpty()) {
             JOptionPane.showMessageDialog(this,

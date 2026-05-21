@@ -3,8 +3,10 @@ package todoapp.ui;
 import javax.swing.*;
 import java.awt.*;
 
-// Kleines Label für Beschriftungen vor den Eingabefeldern ("Titel:", "Status:" usw.)
-// Grauere Farbe damit man es von den Feldern unterscheiden kann
+/**
+ * Kleines Label für Beschriftungen vor den Eingabefeldern ("Titel:", "Status:" usw.).
+ * Grauere Farbe damit man es von den Feldern unterscheiden kann.
+ */
 class EtikettLabel extends JLabel {
 
     EtikettLabel(String text) {

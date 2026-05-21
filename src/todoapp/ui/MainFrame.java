@@ -5,8 +5,10 @@ import todoapp.service.TodoService;
 import javax.swing.*;
 import java.awt.*;
 
-// Das Hauptfenster der Anwendung
-// JFrame ist quasi das Fenster selbst - das hab ich mir so gemerkt
+/**
+ * Das Hauptfenster der Anwendung.
+ * JFrame ist quasi das Fenster selbst - das hab ich mir so gemerkt.
+ */
 @SuppressWarnings({ "serial", "this-escape" })
 public class MainFrame extends JFrame {
 
@@ -15,8 +17,10 @@ public class MainFrame extends JFrame {
         initialize();
     }
 
-    // initialize() ausgelagert damit kein "this-escape" Fehler kommt
-    // (hat die IDE gemeckert, Dozentin hat erklärt warum das ein Problem ist)
+    /**
+     * initialize() ausgelagert damit kein "this-escape" Fehler kommt.
+     * (hat die IDE gemeckert, Dozentin hat erklärt warum das ein Problem ist)
+     */
     private void initialize() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 600);

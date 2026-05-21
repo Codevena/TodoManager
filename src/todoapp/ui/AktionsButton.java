@@ -5,11 +5,15 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-// Button-Klasse die ich für alle drei Buttons nutze (Hinzufügen, Löschen, Speichern)
-// Jeder bekommt eine andere Farbe, der Rest ist gleich
+/**
+ * Button-Klasse die ich für alle drei Buttons nutze (Hinzufügen, Löschen, Speichern).
+ * Jeder bekommt eine andere Farbe, der Rest ist gleich.
+ */
 class AktionsButton extends JButton {
 
-    // bekommt den Text und die Farbe von außen
+    /**
+     * bekommt den Text und die Farbe von außen
+     */
     AktionsButton(String text, Color hintergrund) {
         super(text);
         setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -23,8 +27,10 @@ class AktionsButton extends JButton {
         registriereHoverEffekt(hintergrund);
     }
 
-    // Hover-Effekt: Farbe wird heller wenn man drüber fährt
-    // MouseAdapter ist wie ein EventListener in JS
+    /**
+     * Hover-Effekt: Farbe wird heller wenn man drüber fährt.
+     * MouseAdapter ist wie ein EventListener in JS.
+     */
     private void registriereHoverEffekt(Color normal) {
         Color heller = normal.brighter(); // brighter() macht die Farbe automatisch heller
         addMouseListener(new MouseAdapter() {

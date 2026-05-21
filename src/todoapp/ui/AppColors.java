@@ -2,9 +2,11 @@ package todoapp.ui;
 
 import java.awt.Color;
 
-// Alle Farben die ich in der App verwende sind hier gesammelt
-// So muss ich Farben nur einmal definieren und kann sie überall referenzieren
-// (gleiche Idee wie CSS-Variablen, nur halt in Java)
+/**
+ * Alle Farben die ich in der App verwende sind hier gesammelt.
+ * So muss ich Farben nur einmal definieren und kann sie überall referenzieren.
+ * (gleiche Idee wie CSS-Variablen, nur halt in Java)
+ */
 final class AppColors {
 
     // allgemeine Hintergrundfarben
@@ -41,6 +43,8 @@ final class AppColors {
     // Hintergrund der Statuszeile ganz unten
     static final Color STATUS_BG = new Color(238, 240, 243);
 
-    // privater Konstruktor damit man kein Objekt erstellen kann (ist eine Util-Klasse)
+    /**
+     * privater Konstruktor damit man kein Objekt erstellen kann (ist eine Util-Klasse)
+     */
     private AppColors() {}
 }

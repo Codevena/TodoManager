@@ -2,8 +2,10 @@ package todoapp.model;
 
 import java.time.LocalDate;
 
-// Das ist die Klasse für eine einzelne Aufgabe
-// in Python wäre das einfach ein dict gewesen, aber in Java macht man dafür eine eigene Klasse
+/**
+ * Das ist die Klasse für eine einzelne Aufgabe.
+ * In Python wäre das einfach ein dict gewesen, aber in Java macht man dafür eine eigene Klasse.
+ */
 public class Todo {
 
     // Zähler der automatisch hochzählt damit jede Aufgabe eine eindeutige ID
@@ -18,7 +20,9 @@ public class Todo {
     private Status status; // auch ein Enum
     private final LocalDate erstelltAm; // Datum wird automatisch gesetzt
 
-    // Konstruktor - bekommt alle Werte von außen, ID wird automatisch vergeben
+    /**
+     * Konstruktor - bekommt alle Werte von außen, ID wird automatisch vergeben.
+     */
     public Todo(String titel, String beschreibung, Priorität priorität, Status status) {
         this.id = idZaehler++; // ++ erhöht den Zähler nach jeder Zuweisung
         this.titel = titel;

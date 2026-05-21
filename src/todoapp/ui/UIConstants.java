@@ -1,8 +1,10 @@
 package todoapp.ui;
 
-// Hier sammle ich alle Texte die irgendwo angezeigt werden.
-// So muss ich nicht überall im Code rumsuchen wenn sich was ändert.
-// (in Python wäre das einfach ein dict gewesen lol)
+/**
+ * Hier sammle ich alle Texte die irgendwo angezeigt werden.
+ * So muss ich nicht überall im Code rumsuchen wenn sich was ändert.
+ * (in Python wäre das einfach ein dict gewesen lol)
+ */
 final class UIConstants {
 
     // Fenstertitel
@@ -36,8 +38,10 @@ final class UIConstants {
     static final String DIALOG_KEINE_AUSWAHL = "Keine Auswahl";
     static final String DIALOG_AUSWAHL_MSG = "Bitte zuerst eine Aufgabe auswählen.";
 
-    // privater Konstruktor damit man kein Objekt davon erstellen kann
-    // (hab ich von der Dozentin so gelernt, macht Sinn)
+    /**
+     * privater Konstruktor damit man kein Objekt davon erstellen kann.
+     * (hab ich von der Dozentin so gelernt, macht Sinn)
+     */
     private UIConstants() {
     }
 }

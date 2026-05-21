@@ -3,8 +3,10 @@ package todoapp.ui;
 import javax.swing.*;
 import java.awt.*;
 
-// Das Label ganz unten das anzeigt wie viele Aufgaben es gibt
-// kein Text im Konstruktor weil der Text später dynamisch gesetzt wird
+/**
+ * Das Label ganz unten das anzeigt wie viele Aufgaben es gibt.
+ * kein Text im Konstruktor weil der Text später dynamisch gesetzt wird.
+ */
 class StatusLabel extends JLabel {
 
     StatusLabel() {

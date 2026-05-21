@@ -7,9 +7,11 @@ import todoapp.model.Todo;
 import javax.swing.*;
 import java.awt.*;
 
-// Das Formular oben - hier gibt man Titel, Beschreibung, Priorität und Status ein
-// Die Buttons sind auch hier drin
-// Die eigentliche Logik (was passiert beim Klick) kommt von außen rein (per Setter)
+/**
+ * Das Formular oben - hier gibt man Titel, Beschreibung, Priorität und Status ein.
+ * Die Buttons sind auch hier drin.
+ * Die eigentliche Logik (was passiert beim Klick) kommt von außen rein (per Setter).
+ */
 @SuppressWarnings("serial")
 class EingabePanel extends JPanel {
 
@@ -24,8 +26,9 @@ class EingabePanel extends JPanel {
     private final AktionsButton löschenBtn;
     private final AktionsButton speichernBtn;
 
-    // Konstruktor - baut das ganze Panel zusammen
-
+    /**
+     * Konstruktor - baut das ganze Panel zusammen
+     */
     EingabePanel() {
         setLayout(new BorderLayout());
         setBackground(AppColors.WEISS);
@@ -62,9 +65,10 @@ class EingabePanel extends JPanel {
         box.setBorder(BorderFactory.createLineBorder(AppColors.GRAU_RAND));
     }
 
-    // die Felder (Titel + Beschreibung) kommen zuerst, dann Priorität und Status
-    // nebeneinander
-
+    /**
+     * die Felder (Titel + Beschreibung) kommen zuerst, dann Priorität und Status
+     * nebeneinander
+     */
     private JPanel erstelleFelderPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(AppColors.WEISS);
@@ -119,28 +123,38 @@ class EingabePanel extends JPanel {
         return panel;
     }
 
-    // gibt den eingetippten Titel zurück (trim() entfernt Leerzeichen am Rand)
+    /**
+     * gibt den eingetippten Titel zurück (trim() entfernt Leerzeichen am Rand)
+     */
     String getTitel() {
         return titelField.getText().trim();
     }
 
-    // dasselbe für die Beschreibung
+    /**
+     * dasselbe für die Beschreibung
+     */
     String getBeschreibung() {
         return beschreibungField.getText().trim();
     }
 
-    // gibt den ausgewählten Enum-Wert aus der Dropdown zurück
+    /**
+     * gibt den ausgewählten Enum-Wert aus der Dropdown zurück
+     */
     Priorität getPriorität() {
         return (Priorität) prioritätBox.getSelectedItem();
     }
 
-    // dasselbe für den Status
+    /**
+     * dasselbe für den Status
+     */
     Status getStatus() {
         return (Status) statusBox.getSelectedItem();
     }
 
-    // befüllt die Felder wenn man eine Aufgabe in der Tabelle anklickt
-    // (Bearbeiten-Modus)
+    /**
+     * befüllt die Felder wenn man eine Aufgabe in der Tabelle anklickt
+     * (Bearbeiten-Modus)
+     */
     void befüllen(Todo t) {
         titelField.setText(t.getTitel());
         beschreibungField.setText(t.getBeschreibung());
@@ -148,7 +162,9 @@ class EingabePanel extends JPanel {
         statusBox.setSelectedItem(t.getStatus());
     }
 
-    // setzt alle Felder wieder leer
+    /**
+     * setzt alle Felder wieder leer
+     */
     void leeren() {
         titelField.setText("");
         beschreibungField.setText("");
@@ -156,17 +172,23 @@ class EingabePanel extends JPanel {
         statusBox.setSelectedIndex(0);
     }
 
-    // hier kommt die Logik von TodoPanel rein (Lambda/Methodenreferenz)
+    /**
+     * hier kommt die Logik von TodoPanel rein (Lambda/Methodenreferenz)
+     */
     void setHinzufügenAction(Runnable action) {
         hinzufügenBtn.addActionListener(e -> action.run());
     }
 
-    // gleiches Muster wie oben
+    /**
+     * gleiches Muster wie oben
+     */
     void setLöschenAction(Runnable action) {
         löschenBtn.addActionListener(e -> action.run());
     }
 
-    // gleiches Muster
+    /**
+     * gleiches Muster
+     */
     void setSpeichernAction(Runnable action) {
         speichernBtn.addActionListener(e -> action.run());
     }

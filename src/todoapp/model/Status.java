@@ -1,6 +1,8 @@
 package todoapp.model;
 
-// Enum für den Status einer Aufgabe
+/**
+ * Enum für den Status einer Aufgabe.
+ */
 public enum Status {
     OFFEN("Offen"),
     IN_BEARBEITUNG("In Bearbeitung"),

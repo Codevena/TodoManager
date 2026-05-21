@@ -11,8 +11,10 @@ import java.awt.*;
 import java.util.List;
 import java.util.function.Consumer;
 
-// Die Tabelle die alle Aufgaben anzeigt
-// JPanel als äußere Hülle damit wir BorderLayout nutzen können (direkt in JTable geht das nicht so einfach)
+/**
+ * Die Tabelle die alle Aufgaben anzeigt.
+ * JPanel als äußere Hülle damit wir BorderLayout nutzen können (direkt in JTable geht das nicht so einfach).
+ */
 @SuppressWarnings("serial")
 class TodoTabelle extends JPanel {
 
@@ -96,7 +98,9 @@ class TodoTabelle extends JPanel {
         tabelle.getColumnModel().getColumn(SPALTE_AKTION).setCellRenderer(new AktionRenderer());
     }
 
-    // Tabelle neu befüllen - erst leeren dann alle Todos einfügen
+    /**
+     * Tabelle neu befüllen - erst leeren dann alle Todos einfügen
+     */
     void aktualisieren(List<Todo> todos) {
         modell.setRowCount(0);
         for (Todo t : todos) {
@@ -106,7 +110,9 @@ class TodoTabelle extends JPanel {
         }
     }
 
-    // gibt die ID der ausgewählten Zeile zurück (-1 wenn nichts ausgewählt)
+    /**
+     * gibt die ID der ausgewählten Zeile zurück (-1 wenn nichts ausgewählt)
+     */
     int getGewählteId() {
         int zeile = tabelle.getSelectedRow();
         if (zeile < 0)
@@ -114,14 +120,18 @@ class TodoTabelle extends JPanel {
         return (int) modell.getValueAt(zeile, SPALTE_ID);
     }
 
-    // Auswahl aufheben (nach Hinzufügen/Löschen/Speichern)
+    /**
+     * Auswahl aufheben (nach Hinzufügen/Löschen/Speichern)
+     */
     void auswahlAufheben() {
         tabelle.clearSelection();
     }
 
-    // Listener registrieren für Klicks auf eine Zeile
-    // Consumer<Integer> ist wie eine Funktion die eine Zahl bekommt (kein
-    // Rückgabewert)
+    /**
+     * Listener registrieren für Klicks auf eine Zeile.
+     * Consumer<Integer> ist wie eine Funktion die eine Zahl bekommt (kein
+     * Rückgabewert).
+     */
     void addAuswahlListener(Consumer<Integer> listener) {
         tabelle.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -133,9 +143,11 @@ class TodoTabelle extends JPanel {
     // Innere Klassen für die Renderer (wie man Zellen individuell gestaltet)
     // war am Anfang verwirrend aber macht jetzt mehr Sinn
 
-    // Badge-Renderer: zeichnet farbige Labels für Priorität und Status
-    // musste paintComponent überschreiben damit die abgerundeten Ecken
-    // funktionieren
+    /**
+     * Badge-Renderer: zeichnet farbige Labels für Priorität und Status.
+     * musste paintComponent überschreiben damit die abgerundeten Ecken
+     * funktionieren.
+     */
     @SuppressWarnings("serial")
     private static class BadgeRenderer extends DefaultTableCellRenderer {
 
@@ -218,7 +230,9 @@ class TodoTabelle extends JPanel {
         }
     }
 
-    // Renderer für die Aktion-Spalte (die Stift- und X-Icons)
+    /**
+     * Renderer für die Aktion-Spalte (die Stift- und X-Icons)
+     */
     @SuppressWarnings("serial")
     private static class AktionRenderer extends DefaultTableCellRenderer {
 
