@@ -13,12 +13,15 @@ public class Todo {
     // static bedeutet dass alle Todo-Objekte denselben Zähler teilen
     private static int idZaehler = 1;
 
-    private final int id; // wird im Konstruktor gesetzt und kann nicht mehr geändert werden
+    // war früher final, aber Gson muss id und erstelltAm beim Laden aus der Datei
+    // setzen können - und final-Felder per Reflection meckert Java 26 an (kommt sonst
+    // eine Warnung). Setter gibt's trotzdem keine, von außen ändert die also keiner.
+    private int id; // wird im Konstruktor gesetzt
     private String titel;
     private String beschreibung;
     private Priorität priorität; // Enum-Typ
     private Status status; // auch ein Enum
-    private final LocalDate erstelltAm; // Datum wird automatisch gesetzt
+    private LocalDate erstelltAm; // Datum wird automatisch gesetzt
 
     /**
      * Konstruktor - bekommt alle Werte von außen, ID wird automatisch vergeben.
@@ -30,6 +33,17 @@ public class Todo {
         this.priorität = priorität;
         this.status = status;
         this.erstelltAm = LocalDate.now(); // aktuelles Datum
+    }
+
+    /**
+     * Schiebt den ID-Zähler nach oben wenn eine geladene Aufgabe eine höhere ID hat.
+     * Brauche ich nach dem Laden aus der JSON-Datei: sonst würde die nächste neue
+     * Aufgabe eine ID kriegen die es schon gibt (weil der Zähler ja wieder bei 1 startet).
+     */
+    public static void idZaehlerAnpassen(int geladeneId) {
+        if (geladeneId >= idZaehler) {
+            idZaehler = geladeneId + 1; // immer eins höher als die größte bekannte ID
+        }
     }
 
     // Getter - geben die Werte nach außen, die Felder selbst sind private
@@ -58,9 +72,8 @@ public class Todo {
         return erstelltAm;
     }
 
-    // Setter - damit kann man Werte später ändern (außer id und erstelltAm, die
-    // sind final)
-    // (id und erstelltAm haben keinen Setter weil die sich nicht ändern sollen)
+    // Setter - damit kann man Werte später ändern
+    // (id und erstelltAm haben absichtlich keinen Setter weil die sich nicht ändern sollen)
 
     public void setTitel(String titel) {
         this.titel = titel;

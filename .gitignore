@@ -15,5 +15,8 @@ target/
 .classpath
 .project
 
+# Laufzeit-Daten (wird von der App selbst erzeugt)
+todos.json
+
 # OS
 .DS_Store

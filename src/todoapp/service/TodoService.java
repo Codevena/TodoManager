@@ -16,6 +16,17 @@ public class TodoService implements TodoVerwaltbar {
     // ArrayList als interne Speicherliste - so ähnlich wie eine Python-Liste
     private final List<Todo> todos = new ArrayList<>();
 
+    // kümmert sich ums Speichern/Laden in die JSON-Datei
+    private final TodoSpeicher speicher = new TodoSpeicher();
+
+    /**
+     * Konstruktor - lädt beim Start die gespeicherten Aufgaben aus der Datei.
+     * Beim allerersten Start gibt es noch keine Datei, dann bleibt die Liste einfach leer.
+     */
+    public TodoService() {
+        todos.addAll(speicher.laden());
+    }
+
     /**
      * neue Aufgabe hinzufügen - null-Check damit die App nicht crasht
      */
@@ -25,6 +36,7 @@ public class TodoService implements TodoVerwaltbar {
             throw new IllegalArgumentException("Aufgabe darf nicht null sein.");
         }
         todos.add(t);
+        speicher.speichern(todos); // nach jeder Änderung gleich wegspeichern (wie localStorage in JS)
     }
 
     /**
@@ -37,6 +49,7 @@ public class TodoService implements TodoVerwaltbar {
         if (!entfernt) {
             throw new IllegalArgumentException("Keine Aufgabe mit ID " + id + " gefunden.");
         }
+        speicher.speichern(todos); // Änderung sofort sichern
     }
 
     /**
@@ -50,6 +63,7 @@ public class TodoService implements TodoVerwaltbar {
         for (int i = 0; i < todos.size(); i++) {
             if (todos.get(i).getId() == t.getId()) {
                 todos.set(i, t); // altes Objekt an Stelle i ersetzen
+                speicher.speichern(todos); // Änderung sofort sichern
                 return;
             }
         }
